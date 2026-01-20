@@ -57,7 +57,12 @@ def _unauthorized_message(error):
     return UNAUTHORIZED_MESSAGE
 
 app = Quart(__name__)
-app = cors(app, allow_origin="*")
+app = cors(
+    app,
+    allow_origin="*",
+    allow_headers=["Authorization", "Content-Type", "Accept", "X-Requested-With"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+)
 
 # openapi supported
 QuartSchema(app)

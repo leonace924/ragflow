@@ -10,6 +10,7 @@ import {
   useFetchExternalChatInfo,
   useFetchNextConversationSSE,
 } from '@/hooks/use-chat-request';
+import { useSharedAuth } from '@/hooks/use-shared-auth';
 import i18n from '@/locales/config';
 import { buildMessageUuidWithRole } from '@/utils/chat';
 import React, { forwardRef, useMemo } from 'react';
@@ -21,6 +22,8 @@ import {
 import { buildMessageItemReference } from '../utils';
 
 const ChatContainer = () => {
+  useSharedAuth(); // Initialize auth from URL params for cross-domain iframe
+
   const {
     sharedId: conversationId,
     from,

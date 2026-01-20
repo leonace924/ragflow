@@ -7,6 +7,7 @@ import { useClickDrawer } from '@/components/pdf-drawer/hooks';
 import { useSyncThemeFromParams } from '@/components/theme-provider';
 import { MessageType } from '@/constants/chat';
 import { useUploadCanvasFileWithProgress } from '@/hooks/use-agent-request';
+import { useSharedAuth } from '@/hooks/use-shared-auth';
 import { cn } from '@/lib/utils';
 import i18n from '@/locales/config';
 import DebugContent from '@/pages/agent/debug-content';
@@ -23,6 +24,8 @@ import {
 import { ParameterDialog } from './parameter-dialog';
 
 const ChatContainer = () => {
+  useSharedAuth(); // Initialize auth from URL params for cross-domain iframe
+
   const {
     sharedId: conversationId,
     locale,
